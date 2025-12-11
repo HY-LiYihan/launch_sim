@@ -13,5 +13,5 @@ launch_sim_node:
     map_frame: "map"
 
     # --- 视觉配置 ---
-    trail_lifetime: 0.5   # 【新增】尾迹保留时间(秒)，0.5s意味着尾迹长度 = 平均速度 * 0.5
+    trail_lifetime: 0.2   # 【新增】尾迹保留时间(秒)，0.5s意味着尾迹长度 = 平均速度 * 0.5
     update_frequency: 100.0
