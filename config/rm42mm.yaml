@@ -1,13 +1,13 @@
 launch_sim_node:
   ros__parameters:
     # --- 物理属性 ---
-    mass: 0.032
-    radius: 0.0084
+    mass: 0.041
+    radius: 0.02125
     drag_coeff: 0.47
     air_density: 1.225
     
     # --- 发射配置 ---
-    initial_speed: 25.0
+    initial_speed: 11.0
     shoot_interval: 1.0
     launch_frame: "launcher_link"
     map_frame: "map"
