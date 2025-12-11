@@ -1,0 +1,17 @@
+launch_sim_node:
+  ros__parameters:
+    # --- 物理属性 ---
+    mass: 0.032
+    radius: 0.0084
+    drag_coeff: 0.47
+    air_density: 1.225
+    
+    # --- 发射配置 ---
+    initial_speed: 25.0
+    shoot_interval: 1.0
+    launch_frame: "launcher_link"
+    map_frame: "map"
+
+    # --- 视觉配置 ---
+    trail_lifetime: 0.5   # 【新增】尾迹保留时间(秒)，0.5s意味着尾迹长度 = 平均速度 * 0.5
+    update_frequency: 100.0
