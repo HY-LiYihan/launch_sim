@@ -1,17 +1,62 @@
-launch_sim_node:
+ballistic_solver:
   ros__parameters:
-    # --- 物理属性 ---
     mass: 0.041
     radius: 0.02125
     drag_coeff: 0.47
     air_density: 1.225
-    
-    # --- 发射配置 ---
+    initial_speed: 11.0
+    launch_frame: launcher_link
+    map_frame: odom
+    update_frequency: 30.0
+    target_topic: /tracker/target
+    target_timeout: 0.2
+    speed_topic: /game_status
+    use_live_speed: true
+    speed_timeout: 0.5
+    min_live_speed: 5.0
+    auto_fire: false
+    solver.min_pitch: -0.35
+    solver.max_pitch: 0.8
+    solver.pitch_samples: 36
+    solver.max_iterations: 18
+    solver.max_time: 5.0
+    solver.ground_z: 0.0
+    auto_aim_topic: /auto_aim
+    solution_topic: /auto_aim/gimbal_cmd
+    aim_point_topic: /auto_aim/aim_point
+    reprojected_topic: /auto_aim/reprojected_target
+    detect_topic: /auto_aim/detect
+    track_topic: /auto_aim/track
+    fire_topic: /auto_aim/fire
+    distance_topic: /auto_aim/distance
+    camera_info_topic: /camera_info
+    camera_frame: camera_optical_frame
+
+launch_sim_node:
+  ros__parameters:
+    mass: 0.041
+    radius: 0.02125
+    drag_coeff: 0.47
+    air_density: 1.225
     initial_speed: 11.0
     shoot_interval: 1.0
-    launch_frame: "launcher_link"
-    map_frame: "map"
-
-    # --- 视觉配置 ---
-    trail_lifetime: 0.2   # 【新增】尾迹保留时间(秒)，0.5s意味着尾迹长度 = 平均速度 * 0.5
+    trail_lifetime: 0.2
+    launch_frame: launcher_link
+    map_frame: odom
     update_frequency: 100.0
+    target_topic: /tracker/target
+    target_timeout: 0.2
+    solver.min_pitch: -0.35
+    solver.max_pitch: 0.8
+    solver.pitch_samples: 36
+    solver.max_iterations: 18
+    solver.max_time: 5.0
+    solver.ground_z: 0.0
+    speed_topic: /game_status
+    use_live_speed: true
+    speed_timeout: 0.5
+    min_live_speed: 5.0
+    use_external_solver: true
+    solution_topic: /auto_aim/gimbal_cmd
+    aim_point_topic: /auto_aim/aim_point
+    solver_output_timeout: 0.2

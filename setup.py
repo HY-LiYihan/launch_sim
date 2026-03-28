@@ -30,6 +30,7 @@ setup(
     entry_points={
         'console_scripts': [
             'launch_sim = launch_sim.simulator:main',
+            'ballistic_solver = launch_sim.ballistic_solver:main',
         ],
     },
 )

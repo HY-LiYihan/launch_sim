@@ -24,6 +24,14 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        Node(
+            package='auto_aim_solver',
+            executable='ballistic_solver',
+            name='ballistic_solver',
+            output='screen',
+            parameters=[config_file]
+        ),
+
         # --- Node 1: Projectile Simulation Node ---
         # This node handles the physics calculation and visualization markers.
         Node(
@@ -45,6 +53,7 @@ def generate_launch_description():
             # Settings:
             #   z = 2.0m: Height of the launcher.
             #   pitch = -0.785 rad (-45 deg): Angled upwards for a parabolic trajectory.
-            arguments=['0', '0', '2.0', '0', '-0.785', '0', 'map', 'launcher_link']
+            arguments=['0', '0', '2.0', '0', '-0.785', '0', 'odom', 'launcher_link']
         )
     ])
+

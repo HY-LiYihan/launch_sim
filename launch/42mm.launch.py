@@ -24,8 +24,14 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        # --- Node 1: Projectile Simulation Node ---
-        # This node handles the physics calculation and visualization markers.
+        Node(
+            package='auto_aim_solver',
+            executable='ballistic_solver',
+            name='ballistic_solver',
+            output='screen',
+            parameters=[config_file]
+        ),
+
         Node(
             package='launch_sim',
             executable='launch_sim',
@@ -35,3 +41,4 @@ def generate_launch_description():
         ),
 
     ])
+

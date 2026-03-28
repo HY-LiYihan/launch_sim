@@ -16,7 +16,6 @@ def generate_launch_description():
     Returns:
         LaunchDescription: The description containing the nodes to be launched.
     """
-    # Resolve the path to the configuration file
     config_file = os.path.join(
         get_package_share_directory('launch_sim'),
         'config',
@@ -24,8 +23,14 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        # --- Node 1: Projectile Simulation Node ---
-        # This node handles the physics calculation and visualization markers.
+        Node(
+            package='auto_aim_solver',
+            executable='ballistic_solver',
+            name='ballistic_solver',
+            output='screen',
+            parameters=[config_file]
+        ),
+
         Node(
             package='launch_sim',
             executable='launch_sim',
@@ -34,17 +39,10 @@ def generate_launch_description():
             parameters=[config_file]
         ),
 
-        # --- Node 2: Static Transform Publisher (Test Only) ---
-        # Publishes a static TF for 'launcher_link' relative to 'map'.
-        # This simulates a robot's shooter position without needing a full URDF.
         Node(
             package='tf2_ros',
             executable='static_transform_publisher',
             name='launcher_tf',
-            # Arguments format: x y z yaw pitch roll frame_id child_frame_id
-            # Settings:
-            #   z = 2.0m: Height of the launcher.
-            #   pitch = -0.785 rad (-45 deg): Angled upwards for a parabolic trajectory.
-            arguments=['0', '0', '2.0', '0', '-0.785', '0', 'map', 'launcher_link']
+            arguments=['0', '0', '2.0', '0', '-0.785', '0', 'odom', 'launcher_link']
         )
     ])
