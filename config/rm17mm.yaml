@@ -4,14 +4,14 @@ ballistic_solver:
     radius: 0.0084
     drag_coeff: 0.47
     air_density: 1.225
-    initial_speed: 23.0
+    initial_speed: 22.0
     launch_frame: launcher_link
-    map_frame: odom
+    map_frame: gimbal_link
     update_frequency: 30.0
     target_topic: /tracker/target
     target_timeout: 0.2
     speed_topic: /game_status
-    use_live_speed: true
+    use_live_speed: false
     speed_timeout: 0.5
     min_live_speed: 5.0
     auto_fire: false
@@ -38,11 +38,11 @@ launch_sim_node:
     radius: 0.0084
     drag_coeff: 0.47
     air_density: 1.225
-    initial_speed: 23.0
+    initial_speed: 22.0
     shoot_interval: 0.3
     trail_lifetime: 0.05
     launch_frame: launcher_link
-    map_frame: odom
+    map_frame: gimbal_link
     update_frequency: 100.0
     target_topic: /tracker/target
     target_timeout: 0.2
@@ -53,7 +53,7 @@ launch_sim_node:
     solver.max_time: 5.0
     solver.ground_z: 0.0
     speed_topic: /game_status
-    use_live_speed: true
+    use_live_speed: false
     speed_timeout: 0.5
     min_live_speed: 5.0
     use_external_solver: true

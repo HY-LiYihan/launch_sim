@@ -11,7 +11,7 @@ ballistic_solver:
     target_topic: /tracker/target
     target_timeout: 0.2
     speed_topic: /game_status
-    use_live_speed: true
+    use_live_speed: false
     speed_timeout: 0.5
     min_live_speed: 5.0
     auto_fire: false
@@ -53,7 +53,7 @@ launch_sim_node:
     solver.max_time: 5.0
     solver.ground_z: 0.0
     speed_topic: /game_status
-    use_live_speed: true
+    use_live_speed: false
     speed_timeout: 0.5
     min_live_speed: 5.0
     use_external_solver: true

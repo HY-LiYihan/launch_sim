@@ -4,6 +4,7 @@ import numpy as np
 import rclpy
 from rclpy.node import Node
 from rclpy.duration import Duration
+from rclpy.qos import HistoryPolicy, QoSProfile, ReliabilityPolicy
 from visualization_msgs.msg import Marker, MarkerArray
 from geometry_msgs.msg import Point, PointStamped, Vector3Stamped
 from auto_aim_interfaces.msg import Target
@@ -81,6 +82,11 @@ class LaunchSim(Node):
         self.declare_parameter('solver_output_timeout', 0.2)
 
         self.update_params()
+        self.target_qos = QoSProfile(
+            history=HistoryPolicy.KEEP_LAST,
+            depth=10,
+            reliability=ReliabilityPolicy.BEST_EFFORT,
+        )
 
         # --- TF & Transform Listener ---
         self.tf_buffer = Buffer()
@@ -97,7 +103,7 @@ class LaunchSim(Node):
 
         # --- Subscribers ---
         self.target_sub = self.create_subscription(
-            Target, self.target_topic, self.target_callback, 10)
+            Target, self.target_topic, self.target_callback, self.target_qos)
         self.speed_sub = self.create_subscription(
             GameStatus, self.speed_topic, self.game_status_callback, 10)
         self.solution_sub = self.create_subscription(
