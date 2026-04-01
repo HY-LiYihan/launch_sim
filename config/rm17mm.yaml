@@ -30,7 +30,7 @@ ballistic_solver:
     fire_topic: /auto_aim/fire
     distance_topic: /auto_aim/distance
     camera_info_topic: /camera_info
-    camera_frame: camera_optical_frame
+    camera_frame: camera_link
 
 launch_sim_node:
   ros__parameters:
